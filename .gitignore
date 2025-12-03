@@ -1,2 +1,8 @@
 /target
 .env
+.DS_Store
+.idea/
+logs/
+dev.http
+dev.toml
+prod.http
