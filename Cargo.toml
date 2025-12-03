@@ -16,3 +16,9 @@ axum = { version = "0.8.7", features = ["macros"]}
 axum-valid={ version = "0.24.0",features = ["full_validator"]}
 argon2={ version = "0.6.0-rc.1",features = ["std"]}
 sea-orm = { version = "2.0.0-rc.9", features = ["sqlx-postgres", "runtime-tokio-rustls", "macros", "with-chrono", "debug-print", "with-rust_decimal", "with-uuid"] }
+tracing = { version = "0.1.43", features = ["async-await"] }
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "chrono"] }
+tracing-appender = "0.2.4"
+redis = { version = "0.32.7", features = ["tokio-comp"] }
+mobc = "0.9.0"
+mobc-redis = "0.9.0"

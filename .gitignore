@@ -2,6 +2,7 @@
 .env
 .DS_Store
 .idea/
+.zed/
 logs/
 dev.http
 dev.toml
