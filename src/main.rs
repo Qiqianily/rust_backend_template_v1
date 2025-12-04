@@ -1,18 +1,18 @@
-use todo_list_v1::response::ApiResult;
-use todo_list_v1::response::resp::ApiResponse;
+use todo_list_v1::{app, conf, db, log};
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // build our application with a route
-    let app = axum::Router::new().route("/", axum::routing::get(get_current_version_handler));
+    // 1. 读取配置信息
+    let config = conf::get_app_config();
 
-    // run our app with hyper, listening globally on port 3000
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    axum::serve(listener, app).await.unwrap();
+    // 2. 初始化日志，为了防止多线程日志写入不完整，要保留 guard，main 函数结束时释放
+    let _guard = log::logger::init_logger(config.base().log_level()).await?;
+
+    // 3. 初始化静态数据
+    db::set_global_db().await?;
+
+    // 4. 启动服务
+    app::server::Server::new(config).start_server().await?;
+
     Ok(())
-}
-
-pub async fn get_current_version_handler() -> ApiResult<ApiResponse<String>> {
-    // tracing::info!("Querying current version ...");
-    // return the current version
-    Ok(ApiResponse::success("v0.1.1".into()))
 }

@@ -6,4 +6,6 @@
 logs/
 dev.http
 dev.toml
-prod.http
+prod.toml
+prod.https
+.env_prod

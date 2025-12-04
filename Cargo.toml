@@ -22,3 +22,9 @@ tracing-appender = "0.2.4"
 redis = { version = "0.32.7", features = ["tokio-comp"] }
 mobc = "0.9.0"
 mobc-redis = "0.9.0"
+clap = { version = "4.5.53", features = ["derive"] }
+config = { version = "0.15.19", features = ["toml"] }
+tower-http = { version = "0.6.7", features = ["cors", "trace", "timeout", "limit", "normalize-path", "auth"] }
+jsonwebtoken = { version = "10.2.0", features = ["rust_crypto", "aws-lc-rs"] }
+xid = "1.1.1"
+bytesize = "2.3.1"
